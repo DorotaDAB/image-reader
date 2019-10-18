@@ -1,1 +1,19 @@
-s
+.images-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 5% 0;
+}
+
+.item-container {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+img {
+  width: 50px;
+  height: 50px;
+}
