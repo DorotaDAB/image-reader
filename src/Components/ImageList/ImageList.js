@@ -1,6 +1,7 @@
 import React from 'react';
 import './ImageList.css';
 import Image from '../Image/Image';
+import EXIF from '../../../node_modules/exif-js';
 
 class ImageList extends React.Component {
 	constructor() {
@@ -14,6 +15,7 @@ class ImageList extends React.Component {
 		this.handleChange = this.handleChange.bind(this);
 		this.displayImages = this.displayImages.bind(this);
 		this.deleteImg = this.deleteImg.bind(this);
+		this.onLoadHandler = this.onLoadHandler.bind(this);
 	}
   
 	handleChange(event) {
@@ -30,13 +32,29 @@ class ImageList extends React.Component {
 		this.setState({nextId: ++currentNextId});
 	}
  
-	
 	deleteImg(id) {
 		let filteredImages = this.state.images.filter( (img) => {return img.id !== id});
 		this.setState({images: filteredImages});
 	}
+ 
+	onLoadHandler(event) {
+		let component = this;
+		
+		EXIF.getData(event.target, function() {
+		let long = EXIF.getTag(this, 'GPSLongitude');
+		let lat = EXIF.getTag(this, 'GPSLatitude');
+		
+		let loadedImageId = Number(this.id);
+		let foundedIndex = component.state.images.findIndex((image) => { return image.id === loadedImageId}); 
+		
+		let currentImages = component.state.images;
+		let foundedImage = currentImages[foundedIndex];
+		foundedImage.longitude = long;
+		foundedImage.latitude = lat;
 
-	
+		component.setState({
+			images: currentImages});
+	})};
 
 	displayImages() {
 		if (this.state.images.length > 0) {
@@ -51,7 +69,8 @@ class ImageList extends React.Component {
 													type={image.type}
 													size={image.size}
 													id={image.id}
-													imgDeleted={this.deleteImg.bind(this, image.id)}/> 
+													imgDeleted={this.deleteImg.bind(this, image.id)}
+													loaded={this.onLoadHandler}/> 
 											</div>
 										)
 									})

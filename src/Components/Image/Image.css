@@ -32,7 +32,6 @@ img {
   transition: 150ms;
 }
 
-.btn-delete:focus,
 .btn-delete:hover {
     background-color: #a22a2a;
     box-shadow: 0px 5px 0px #8e2525;
