@@ -20,18 +20,26 @@ class ImageList extends React.Component {
   
 	handleChange(event) {
 		if (event.target.files.length > 0) {
+			if (event.target.files[0].type !== "image/jpeg") {
+				alert("Not supported file type. Please choose *.jpg file.");
+				return;
+			}
+			if (event.target.files[0].size > 1024*1024) {
+				alert("Not supported file size. Please choose files smaller than 1 MB.");
+				return
+			}
+
 			this.setState({ 
 				images: [ ...this.state.images, 
-					{ file: URL.createObjectURL(event.target.files[0]), 
-						name: event.target.files[0].name,
-						size: event.target.files[0].size,
-						type: event.target.files[0].type,
-						id: this.state.nextId}] }
+				{ file: URL.createObjectURL(event.target.files[0]), 
+					name: event.target.files[0].name,
+					size: event.target.files[0].size,
+					type: event.target.files[0].type,
+					id: this.state.nextId}] }
 			);
+			let currentNextId = this.state.nextId;
+			this.setState({nextId: ++currentNextId});
 		}
-  
-		let currentNextId = this.state.nextId;
-		this.setState({nextId: ++currentNextId});
 	}
  
 	deleteImg(id) {
@@ -88,7 +96,11 @@ class ImageList extends React.Component {
 		return (
 			<div className="main-cointainer">
 				<h1>Your image gallery</h1>
-				<input type="file" name="file" id="file" className="btn btn-upload" onChange={this.handleChange} />
+				<input type="file" name="file" 
+					id="file" 
+					className="btn btn-upload" 
+					onChange={this.handleChange} 
+					accept="image/jpeg"/>
 				<label htmlFor="file">Choose a file</label>
 				{this.displayImages()}
 			</div>
