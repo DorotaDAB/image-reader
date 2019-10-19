@@ -10,6 +10,7 @@
 .main-cointainer h1 {
   margin-top: 5%;
   margin-bottom: 5%;
+  font-size: 5vw;
 }
 
 .list-item {
@@ -17,36 +18,34 @@
    margin-bottom: 2%;
  }
 
-.upload {
+.btn-upload {
 	width: 0.1px;
 	height: 0.1px;
 	opacity: 0;
 }
 
-.upload + label {
-    width: 200px;
-    height:40px;
-    font-size: 1em;
+.btn-upload + label {
+    width: 22vw;
+    font-size: 2vw;
     font-weight: 500;
+    padding: 1%;
     color: white;
-    line-height: 2.6em;
-    text-transform: uppercase;
     text-align: center;
     background-color: #008B8B;
     display: inline-block;
     border-radius: 10px;
-    box-shadow: 0px 3px 0px 	 #008080;
+    box-shadow: 0px 3px 0px #008080;
     transition: 150ms;
 }
 
-.upload:focus + label,
-.upload + label:hover {
+.btn-upload:focus + label,
+.btn-upload:hover + label {
     background-color: #009999;
     box-shadow: 0px 5px 0px #008b8b;
     cursor: pointer;
 }
 
-.upload:focus + label {
-	outline: 1px dotted #000;
+.btn-uopload:focus + label {
+	outline: 1px dotted;
 	outline: -webkit-focus-ring-color auto 5px;
 }

@@ -16,6 +16,7 @@ class Image extends React.Component {
 				<img src={this.props.file} alt={this.props.name}/>
 				<p>File Name: {this.props.name} </p>
 				<p>Size: {formattedSize} KB </p> 
+				<button className="btn btn-delete" onClick={this.props.imgDeleted}> Delete </button>
 		</div>
 		)
 	}

@@ -11,15 +11,12 @@ class ImageList extends React.Component {
 			nextId: 1
 		}
 
-		this.handleChange = this.handleChange.bind(this); //
+		this.handleChange = this.handleChange.bind(this);
 		this.displayImages = this.displayImages.bind(this);
+		this.deleteImg = this.deleteImg.bind(this);
 	}
   
 	handleChange(event) {
-
-		let formattedSize = Math.round(event.target.files[0].size / 1024)
-
-
     this.setState({ 
 			images: [ ...this.state.images, 
 				{ file: URL.createObjectURL(event.target.files[0]), 
@@ -28,10 +25,18 @@ class ImageList extends React.Component {
 					type: event.target.files[0].type,
 					id: this.state.nextId}] }
 		);
-		
+
 		let currentNextId = this.state.nextId;
 		this.setState({nextId: ++currentNextId});
 	}
+ 
+	
+	deleteImg(id) {
+		let filteredImages = this.state.images.filter( (img) => {return img.id !== id});
+		this.setState({images: filteredImages});
+	}
+
+	
 
 	displayImages() {
 		if (this.state.images.length > 0) {
@@ -44,7 +49,9 @@ class ImageList extends React.Component {
 													file={image.file} 
 													name={image.name}
 													type={image.type}
-													size={image.size} /> 
+													size={image.size}
+													id={image.id}
+													imgDeleted={this.deleteImg.bind(this, image.id)}/> 
 											</div>
 										)
 									})
@@ -58,8 +65,8 @@ class ImageList extends React.Component {
 		return (
 			<div className="main-cointainer">
 				<h1>Your image gallery</h1>
-				<input type="file" name="file" id="file" className="upload" onChange={this.handleChange} />
-				<label for="file">Choose a file</label>
+				<input type="file" name="file" id="file" className="btn btn-upload" onChange={this.handleChange} />
+				<label htmlFor="file">Choose a file</label>
 				{this.displayImages()}
 			</div>
 		);
