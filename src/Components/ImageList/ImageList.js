@@ -19,15 +19,17 @@ class ImageList extends React.Component {
 	}
   
 	handleChange(event) {
-    this.setState({ 
-			images: [ ...this.state.images, 
-				{ file: URL.createObjectURL(event.target.files[0]), 
-					name: event.target.files[0].name,
-					size: event.target.files[0].size,
-					type: event.target.files[0].type,
-					id: this.state.nextId}] }
-		);
-
+		if (event.target.files.length > 0) {
+			this.setState({ 
+				images: [ ...this.state.images, 
+					{ file: URL.createObjectURL(event.target.files[0]), 
+						name: event.target.files[0].name,
+						size: event.target.files[0].size,
+						type: event.target.files[0].type,
+						id: this.state.nextId}] }
+			);
+		}
+  
 		let currentNextId = this.state.nextId;
 		this.setState({nextId: ++currentNextId});
 	}
@@ -69,6 +71,8 @@ class ImageList extends React.Component {
 													type={image.type}
 													size={image.size}
 													id={image.id}
+													long={image.longitude}
+													lat={image.latitude}
 													imgDeleted={this.deleteImg.bind(this, image.id)}
 													loaded={this.onLoadHandler}/> 
 											</div>

@@ -10,12 +10,19 @@
   margin: 0 auto;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
+}
+
+.item-container p {
+  margin: 0%;
+}
+
+.item-container p:first-of-type {
+  font-weight: bold;
 }
 
 img {
-  width: 50px;
-  height: 50px;
+  width: 10vw;
 }
 
 .btn-delete {
