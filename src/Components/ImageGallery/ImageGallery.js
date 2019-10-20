@@ -13,13 +13,13 @@ class ImageGallery extends React.Component {
 			nextId: 1
 		}
 
-		this.handleChange = this.handleChange.bind(this);
+		this.fileInputChangedHandler = this.fileInputChangedHandler.bind(this);
 		this.displayImages = this.displayImages.bind(this);
-		this.deleteImg = this.deleteImg.bind(this);
-		this.onLoadHandler = this.onLoadHandler.bind(this);
+		this.imageDeletedHandler = this.imageDeletedHandler.bind(this);
+		this.imageLoadedHandler = this.imageLoadedHandler.bind(this);
 	}
   
-	handleChange(event) {
+	fileInputChangedHandler(event) {
 		if (event.target.files.length > 0) {
 			if (event.target.files[0].type !== "image/jpeg") {
 				alert(lang.fileTypeNotSupported);
@@ -43,29 +43,30 @@ class ImageGallery extends React.Component {
 		}
 	}
  
-	deleteImg(id) {
+	imageDeletedHandler(id) {
 		let filteredImages = this.state.images.filter( (img) => {return img.id !== id});
 		this.setState({images: filteredImages});
 	}
  
-	onLoadHandler(event) {
+	imageLoadedHandler(event) {
 		let component = this;
 		
 		EXIF.getData(event.target, function() {
-		let long = EXIF.getTag(this, 'GPSLongitude');
-		let lat = EXIF.getTag(this, 'GPSLatitude');
-		
-		let loadedImageId = Number(this.id);
-		let foundedIndex = component.state.images.findIndex((image) => { return image.id === loadedImageId}); 
-		
-		let currentImages = component.state.images;
-		let foundedImage = currentImages[foundedIndex];
-		foundedImage.longitude = long;
-		foundedImage.latitude = lat;
+			let long = EXIF.getTag(this, 'GPSLongitude');
+			let lat = EXIF.getTag(this, 'GPSLatitude');
+			
+			let loadedImageId = Number(this.id);
+			let foundedIndex = component.state.images.findIndex((image) => { return image.id === loadedImageId}); 
+			
+			let currentImages = component.state.images;
+			let foundedImage = currentImages[foundedIndex];
+			foundedImage.longitude = long;
+			foundedImage.latitude = lat;
 
-		component.setState({
-			images: currentImages});
-	})};
+			component.setState({
+				images: currentImages});
+		})
+	};
 
 	displayImages() {
 		if (this.state.images.length > 0) {
@@ -82,8 +83,8 @@ class ImageGallery extends React.Component {
 													id={image.id}
 													long={image.longitude}
 													lat={image.latitude}
-													imgDeleted={this.deleteImg.bind(this, image.id)}
-													imgLoaded={this.onLoadHandler}/> 
+													imgDeleted={this.imageDeletedHandler.bind(this, image.id)}
+													imgLoaded={this.imageLoadedHandler}/> 
 											</div>
 										)
 									})
@@ -100,7 +101,7 @@ class ImageGallery extends React.Component {
 				<input type="file" 
 					className="upload-form" 
 					accept="image/jpeg"
-					onChange={this.handleChange}
+					onChange={this.fileInputChangedHandler}
 					data-title={lang.chooseFile} 
 					/>
 				{this.displayImages()}

@@ -1,6 +1,6 @@
 # image-reader #
 
-This is a web application project allowing to upload nad display *.jpeg files.
+This is a web application project allowing to upload and display *.jpeg files.
 
 * Used tools: React.
 
@@ -15,7 +15,7 @@ This is a web application project allowing to upload nad display *.jpeg files.
 * Removing image form gallery.
 
 ## Planned features ##
-* Map displaying,
+* Displaying Google map,
 * Marking images on the map on a basis of GPS coordinates,
 * Removing markers from the map when image is deleted from gallery.
 
