@@ -1,5 +1,6 @@
 import React from 'react';
 import './Image.css';
+import lang from '../../assets/lang/lang.json';
 
 class Image extends React.Component {
 	constructor() {
@@ -22,8 +23,8 @@ class Image extends React.Component {
 
 			return (
 				<>
-					<p>Latitude: {formattedLatitude} </p>
-					<p>Longitude: {formattedLongitude} </p>
+					<p> {lang.latitude} {formattedLatitude} </p>
+					<p> {lang.longitude} {formattedLongitude} </p>
 				</>	
 			)
 		}
@@ -34,18 +35,18 @@ class Image extends React.Component {
 				<div className="item-container">
 					<img src={this.props.file} alt={this.props.name} id={this.props.id} onLoad={this.props.imgLoaded}/>
 					<div>
-						<p>File Name:</p> 
+						<p>{lang.fileName}</p> 
 						<p>{this.props.name} </p>
 					</div>
 					<div>
-						<p>GPS:</p>
+						<p>{lang.gps}</p>
 						{gpsData}
 					</div>
 					<div>
-						<p>Size:</p> 
-						<p>{formattedSize} KB </p> 
+						<p>{lang.size}</p> 
+						<p>{formattedSize} {lang.kb} </p> 
 					</div>
-					<button className="btn btn-delete" onClick={this.props.imgDeleted}> Delete </button>
+					<button className="btn btn-delete" onClick={this.props.imgDeleted}> {lang.delete} </button>
 			</div>
 			)		
 	}

@@ -1,0 +1,13 @@
+{
+  "fileTypeNotSupported": "Not supported file type. Please choose *.jpg file.",
+  "fileSizeNotSupported": "Not supported file size. Please choose files smaller than 1 MB.",
+  "imgGallery": "Your image gallery",
+  "chooseFile": "Choose a file or drag it here",
+  "fileName": "File Name:",
+  "gps": "GPS:",
+  "latitude": "Latitude: ",
+  "longitude": "Longitude: ",
+  "size": "Size:",
+  "kb": " KB",
+  "delete": "Delete"
+}

@@ -2,6 +2,7 @@ import React from 'react';
 import './ImageGallery.css';
 import Image from '../Image/Image';
 import EXIF from '../../../node_modules/exif-js';
+import lang from '../../assets/lang/lang.json';
 
 class ImageGallery extends React.Component {
 	constructor() {
@@ -21,11 +22,11 @@ class ImageGallery extends React.Component {
 	handleChange(event) {
 		if (event.target.files.length > 0) {
 			if (event.target.files[0].type !== "image/jpeg") {
-				alert("Not supported file type. Please choose *.jpg file.");
+				alert(lang.fileTypeNotSupported);
 				return;
 			}
 			if (event.target.files[0].size > 1024*1024) {
-				alert("Not supported file size. Please choose files smaller than 1 MB.");
+				alert(lang.fileSizeNotSupported);
 				return
 			}
 
@@ -95,12 +96,12 @@ class ImageGallery extends React.Component {
 	render() {
 		return (
 			<div className="main-cointainer">
-				<h1>Your image gallery</h1>
+				<h1>{lang.imgGallery}</h1>
 				<input type="file" 
 					className="upload-form" 
 					accept="image/jpeg"
 					onChange={this.handleChange}
-					data-title="Choose a file or drag it here" 
+					data-title={lang.chooseFile} 
 					/>
 				{this.displayImages()}
 			</div>
