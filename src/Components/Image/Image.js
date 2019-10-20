@@ -32,7 +32,7 @@ class Image extends React.Component {
 
 			return (
 				<div className="item-container">
-					<img src={this.props.file} alt={this.props.name} id={this.props.id} onLoad={this.props.loaded}/>
+					<img src={this.props.file} alt={this.props.name} id={this.props.id} onLoad={this.props.imgLoaded}/>
 					<div>
 						<p>File Name:</p> 
 						<p>{this.props.name} </p>

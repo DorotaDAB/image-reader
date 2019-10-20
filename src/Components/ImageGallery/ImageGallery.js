@@ -1,9 +1,9 @@
 import React from 'react';
-import './ImageList.css';
+import './ImageGallery.css';
 import Image from '../Image/Image';
 import EXIF from '../../../node_modules/exif-js';
 
-class ImageList extends React.Component {
+class ImageGallery extends React.Component {
 	constructor() {
 		super();
 
@@ -82,7 +82,7 @@ class ImageList extends React.Component {
 													long={image.longitude}
 													lat={image.latitude}
 													imgDeleted={this.deleteImg.bind(this, image.id)}
-													loaded={this.onLoadHandler}/> 
+													imgLoaded={this.onLoadHandler}/> 
 											</div>
 										)
 									})
@@ -96,16 +96,16 @@ class ImageList extends React.Component {
 		return (
 			<div className="main-cointainer">
 				<h1>Your image gallery</h1>
-				<input type="file" name="file" 
-					id="file" 
-					className="btn btn-upload" 
-					onChange={this.handleChange} 
-					accept="image/jpeg"/>
-				<label htmlFor="file">Choose a file</label>
+				<input type="file" 
+					className="upload-form" 
+					accept="image/jpeg"
+					onChange={this.handleChange}
+					data-title="Choose a file or drag it here" 
+					/>
 				{this.displayImages()}
 			</div>
 		);
 	}
 };
 
-export default ImageList;
+export default ImageGallery;
