@@ -3,6 +3,7 @@ import './ImageGallery.css';
 import Image from '../Image/Image';
 import EXIF from '../../../node_modules/exif-js';
 import lang from '../../assets/lang/lang.json';
+import Map from '../Map/Map';
 
 class ImageGallery extends React.Component {
 	constructor() {
@@ -105,6 +106,7 @@ class ImageGallery extends React.Component {
 					data-title={lang.chooseFile} 
 					/>
 				{this.displayImages()}
+				<Map />
 			</div>
 		);
 	}

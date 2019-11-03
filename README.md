@@ -13,9 +13,11 @@ This is a web application project allowing to upload and display *.jpeg files.
   * image size,
   * GPS coordinates (if available)
 * Removing image form gallery.
+* Dispaying Google Maps:
+  ### In order to enable integration with Google Maps, please enter your Google-API key in Map Component (Map.js) in GoogleApiWrapper export. ###
+
 
 ## Planned features ##
-* Displaying Google map,
 * Marking images on the map on a basis of GPS coordinates,
 * Removing markers from the map when image is deleted from gallery.
 
