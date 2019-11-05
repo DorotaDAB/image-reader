@@ -3,7 +3,7 @@ import './ImageGallery.css';
 import Image from '../Image/Image';
 import EXIF from '../../../node_modules/exif-js';
 import lang from '../../assets/lang/lang.json';
-import Map from '../Map/Map';
+import MapContainer from '../Map/Map';
 
 class ImageGallery extends React.Component {
 	constructor() {
@@ -18,6 +18,7 @@ class ImageGallery extends React.Component {
 		this.displayImages = this.displayImages.bind(this);
 		this.imageDeletedHandler = this.imageDeletedHandler.bind(this);
 		this.imageLoadedHandler = this.imageLoadedHandler.bind(this);
+		this.displayMap = this.displayMap.bind(this);
 	}
   
 	fileInputChangedHandler(event) {
@@ -61,11 +62,22 @@ class ImageGallery extends React.Component {
 			
 			let currentImages = component.state.images;
 			let foundedImage = currentImages[foundedIndex];
-			foundedImage.longitude = long;
-			foundedImage.latitude = lat;
 
-			component.setState({
-				images: currentImages});
+			if (long !== undefined) {
+					let getFormattedCoord = (coord) => {
+									return coord[0].numerator + coord[1].numerator /
+											(60 * coord[1].denominator) + coord[2].numerator / (3600 * coord[2].denominator);
+								}
+					let formattedLongitude = getFormattedCoord(long).toFixed(6);
+					let formattedLatitude = getFormattedCoord(lat).toFixed(6);
+					
+				foundedImage.longitude = formattedLongitude;
+				foundedImage.latitude = formattedLatitude;
+
+				component.setState({
+					images: currentImages});
+			}
+			
 		})
 	};
 
@@ -95,6 +107,17 @@ class ImageGallery extends React.Component {
 		} 
 	}
 
+	displayMap() {
+		if (this.state.images.length > 0) {
+			return (
+				<MapContainer
+					images={this.state.images}>
+				</ MapContainer>
+			)
+		
+		}
+	}
+
 	render() {
 		return (
 			<div className="main-cointainer">
@@ -104,9 +127,9 @@ class ImageGallery extends React.Component {
 					accept="image/jpeg"
 					onChange={this.fileInputChangedHandler}
 					data-title={lang.chooseFile} 
-					/>
+				/>
 				{this.displayImages()}
-				<Map />
+				{this.displayMap()}
 			</div>
 		);
 	}
