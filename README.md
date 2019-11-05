@@ -4,7 +4,7 @@ This is a web application project allowing to upload and display *.jpeg files.
 
 * Used tools: React.
 
-## Features implemented so far ##
+## Features available ##
 * Upload file by drag&drop or file input,
 * File size and type validation,
 * Displaying: 
@@ -15,9 +15,6 @@ This is a web application project allowing to upload and display *.jpeg files.
 * Removing image form gallery.
 * Dispaying Google Maps:
   ### In order to enable integration with Google Maps, please enter your Google-API key in Map Component (Map.js) in GoogleApiWrapper export. ###
-
-
-## Planned features ##
 * Marking images on the map on a basis of GPS coordinates,
 * Removing markers from the map when image is deleted from gallery.
 
