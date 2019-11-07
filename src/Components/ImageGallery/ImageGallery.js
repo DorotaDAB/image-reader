@@ -108,14 +108,13 @@ class ImageGallery extends React.Component {
 	}
 
 	displayMap() {
-		if (this.state.images.length > 0) {
-			return (
-				<MapContainer
-					images={this.state.images}>
-				</ MapContainer>
-			)
-		
-		}
+		let imagesWithCoords = this.state.images.filter( (image) => {return image.hasOwnProperty('longitude')});
+
+		return (
+			<MapContainer
+				images={imagesWithCoords}>
+			</ MapContainer>
+		)
 	}
 
 	render() {

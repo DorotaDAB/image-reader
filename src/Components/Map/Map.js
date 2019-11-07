@@ -11,30 +11,27 @@ const mapStyles = {
 export class MapContainer extends React.Component {
   constructor(props) {
     super(props);
-    
-    this.state = {
-      images: this.props.images,
-    }
-
+  
     this.displayMap = this.displayMap.bind(this);
     this.displayMarkers = this.displayMarkers.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setState({ 
-      images: nextProps.images,
-    });  
-  }
-
   displayMap = () => {
+    let long = this.props.images.length > 0 ? this.props.images[0].longitude : 21.006953;
+    let lat = this.props.images.length > 0 ? this.props.images[0].latitude : 52.234334
+
     return(
       <Map
         google={this.props.google}
         zoom={15}
         style={mapStyles}
         initialCenter={{
-          lat: 43.467448,
-          lng: 11.885127
+          lat: lat,
+          lng: long
+        }}
+        center={{
+          lat: lat,
+          lng: long
         }}
       >
         {this.displayMarkers()}
@@ -43,9 +40,7 @@ export class MapContainer extends React.Component {
   }
 
   displayMarkers = () => {
-    return this.state.images
-      .filter( (image) => {return image.hasOwnProperty('longitude')})
-      .map((image) => {
+    return this.props.images.map((image) => {
         return (
           <Marker 
             key={image.id}
