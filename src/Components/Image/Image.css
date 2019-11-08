@@ -26,6 +26,10 @@ img {
   width: 10vw;
 }
 
+img:hover {
+  transform: scale(2);
+}
+
 .btn-delete {
   width: 10vw;
   padding: 0.5%;
