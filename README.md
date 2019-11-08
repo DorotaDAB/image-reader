@@ -1,6 +1,6 @@
 # image-reader #
 
-This is a web application project allowing to upload and display *.jpeg files.
+This is a web application project allowing to upload, display *.jpeg files and marking images on the map on a basis of GPS coordinates.
 
 * Used tools: React.
 
@@ -13,8 +13,8 @@ This is a web application project allowing to upload and display *.jpeg files.
   * image size,
   * GPS coordinates (if available)
 * Removing image form gallery.
-* Dispaying Google Maps:
-  ### In order to enable integration with Google Maps, please enter your Google-API key in Map Component (Map.js) in GoogleApiWrapper export. ###
+* Displaying Google Maps:
+  #### In order to enable integration with Google Maps, please enter your Google-API key in Map Component (Map.js) in GoogleApiWrapper export. ####
 * Marking images on the map on a basis of GPS coordinates,
 * Removing markers from the map when image is deleted from gallery.
 
@@ -23,6 +23,8 @@ Online demo: https://dorotadab.github.io/image-reader
 ------------------
 
 ##  Steps to run the application ##
+
+### In order to enable integration with Google Maps, please enter your Google-API key in Map Component (Map.js) in GoogleApiWrapper export. ###
 
 ### `npm install`
 ### `npm start`
